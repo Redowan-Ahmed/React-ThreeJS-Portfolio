@@ -5,6 +5,7 @@ import starbucks from './starbucks.png'
 import tesla from './tesla.png'
 import logo from './logo.svg'
 import Hi from './Hi.gif'
+import QR from './RedowanahmedQScaner.png'
 
 export {
     hero,
@@ -13,5 +14,6 @@ export {
     starbucks,
     tesla,
     logo,
-    Hi
+    Hi,
+    QR
 }

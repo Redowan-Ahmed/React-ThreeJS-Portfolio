@@ -1,10 +1,10 @@
-import emailjs from "@emailjs/browser";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef, useState } from "react";
-
 import { Fox } from "../models";
 import useAlert from "../hooks/useAlert";
 import { Alert, Loader } from "../components";
+import axios from "axios";
+import { QR } from "../assets/images";
 
 const Contact = () => {
   const formRef = useRef();
@@ -25,21 +25,14 @@ const Contact = () => {
     setLoading(true);
     setCurrentAnimation("hit");
 
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "JavaScript Mastery",
-          from_email: form.email,
-          to_email: "sujata@jsmastery.pro",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
+  axios.post(
+    'https://redowan.voxnetconsulting.co.uk/contact/',{
+      email: form.email,
+      full_name: form.name,
+      massage: form.message
+    }
+  ).then(
+        (response) => {
           setLoading(false);
           showAlert({
             show: true,
@@ -68,11 +61,11 @@ const Contact = () => {
             type: "danger",
           });
         }
-      );
+        )
   };
 
   return (
-    <section className='relative flex lg:flex-row flex-col max-container'>
+    <section className='relative flex lg:flex-row flex-col-reverse max-container'>
       {alert.show && <Alert {...alert} />}
 
       <div className='flex-1 min-w-[50%] flex flex-col'>
@@ -135,9 +128,13 @@ const Contact = () => {
             {loading ? "Sending..." : "Submit"}
           </button>
         </form>
+        <div className="flex justify-center py-8 flex-col items-center gap-3">
+          <img src={QR} alt="QR Code Scanner" className="w-full rounded-md" />
+          <h2 className="text-white font-bold text-lg">Scan To contact via Whatsapp</h2>
+        </div>
       </div>
 
-      <div className='lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]'>
+      <div className='lg:full w-full lg:h-[750px] md:h-[350px] h-[250px]'>
         <Canvas
           camera={{
             position: [0, 0, 5],
