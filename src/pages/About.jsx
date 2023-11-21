@@ -5,10 +5,34 @@ import {
 
 import { CTA } from "../components";
 import { experiences, skills } from "../constants";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import "react-vertical-timeline-component/style.min.css";
 import { Hi } from "../assets/images";
 const About = () => {
+  const [loading, setLoading] = useState(false);
+  const [skills, setSkills] = useState([])
+  const [experiences, setExperiences] = useState([])
+  useEffect(() => {
+    const loadSkills = async () => {
+      setLoading(true);
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/skills/"
+      );
+      setSkills(response.data);
+
+      const experience = await axios.get(
+        'http://127.0.0.1:8000/api/work-experainces/'
+      );
+      setExperiences(experience.data)
+
+      setLoading(false);
+    };
+    loadSkills();
+  }, []);
+
+
   return (
     <section className='max-container'>
       <h1 className='head-text text-white flex flex-wrap gap-3 items-center '>
@@ -35,7 +59,7 @@ const About = () => {
               <div className='btn-back rounded-xl' />
               <div className='btn-front rounded-xl flex justify-center items-center'>
                 <img
-                  src={skill.imageUrl}
+                  src={skill.image}
                   alt={skill.name}
                   className='w-1/2 h-1/2 object-contain'
                 />
@@ -56,15 +80,15 @@ const About = () => {
 
         <div className='mt-12 flex'>
           <VerticalTimeline>
-            {experiences.map((experience, index) => (
+            {experiences.map((experience) => (
               <VerticalTimelineElement
-                key={experience.company_name}
-                date={experience.date}
-                iconStyle={{ background: experience.iconBg }}
+                key={experiences.id}
+                date={experience.start_date}
+                iconStyle={{ background: experience.strock_color }}
                 icon={
                   <div className='flex justify-center items-center w-full h-full'>
                     <img
-                      src={experience.icon}
+                      src={experience.logo}
                       alt={experience.company_name}
                       className='w-[60%] h-[60%] object-contain'
                     />
@@ -73,13 +97,13 @@ const About = () => {
                 contentStyle={{
                   borderBottom: "8px",
                   borderStyle: "solid",
-                  borderBottomColor: experience.iconBg,
+                  borderBottomColor: experience.strock_color,
                   boxShadow: "none",
                 }}
               >
                 <div>
                   <h3 className='text-black text-xl font-poppins font-semibold'>
-                    {experience.title}
+                    {experience.company_name}
                   </h3>
                   <p
                     className='text-black-500 font-medium text-base'
@@ -89,16 +113,8 @@ const About = () => {
                   </p>
                 </div>
 
-                <ul className='my-5 list-disc ml-5 space-y-2'>
-                  {experience.points.map((point, index) => (
-                    <li
-                      key={`experience-point-${index}`}
-                      className='text-black-500/50 font-normal pl-1 text-sm'
-                    >
-                      {point}
-                    </li>
-                  ))}
-                </ul>
+                  <div className='my-5 list-disc ml-5 space-y-2' dangerouslySetInnerHTML={{__html: experience.description}}/>
+
               </VerticalTimelineElement>
             ))}
           </VerticalTimeline>
