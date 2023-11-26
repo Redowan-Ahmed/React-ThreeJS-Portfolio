@@ -54,19 +54,19 @@ const About = () => {
         <div className='mt-16 flex flex-wrap gap-12'>
           {loading ?
             loadingData.map((value) => (
-              <div key={value} className='block-container lg:w-20 lg:h-20 md:w-20 md:h-20 sm:w-16 sm:h-16 w-16 h-16 animate-pulse'>
-                <div className='btn-back rounded-xl' />
+              <div key={value} className='block-container lg:w-20 lg:h-20 md:w-20 md:h-20 sm:w-[4.7rem] sm:h-[4.7rem] w-[4.7rem] h-[4.7rem] animate-pulse'>
+                <div className='btn-back rounded-xl bg-blue-950' />
                 <div className='btn-front rounded-xl flex justify-center items-center'>
                 </div>
               </div>
             )) : skills.map((skill) => (
-              <div className='block-container lg:w-20 lg:h-20 sm:w-16 sm:h-16 w-16 h-16' key={skill.name}>
-                <div className='btn-back rounded-xl' />
+              <div className='block-container lg:w-20 lg:h-20 sm:w-[4.7rem] sm:h-[4.7rem] w-[4.7rem] h-[4.7rem]' key={skill.name}>
+                <div className='btn-back rounded-xl bg-blue-950 animate-pulse' />
                 <div className='btn-front rounded-xl flex justify-center items-center'>
                   <img
                     src={skill.image}
                     alt={skill.name}
-                    className='w-1/2 h-1/2 object-contain'
+                    className='w-1/2 h-1/2 object-contain rounded-md'
                   />
                 </div>
               </div>
@@ -101,7 +101,7 @@ const About = () => {
                           <img
                             src={experience.logo}
                             alt={experience.company_name}
-                            className='w-[60%] h-[60%] object-contain'
+                            className='w-[60%] h-[60%] object-contain rounded-md'
                           />
                         </div>
                       }
@@ -114,7 +114,7 @@ const About = () => {
                     >
                       <div>
                         <h3 className='text-black text-xl font-poppins font-semibold'>
-                          {experience.company_name}
+                          {experience.position}
                         </h3>
                         <p
                           className='text-black-500 font-medium text-base'
@@ -124,7 +124,7 @@ const About = () => {
                         </p>
                       </div>
 
-                      <div className='my-5 list-disc ml-5 space-y-2' dangerouslySetInnerHTML={{ __html: experience.description }} />
+                      <div className='description' dangerouslySetInnerHTML={{ __html: experience.description }} />
                     </VerticalTimelineElement>
                   ))}
                 </VerticalTimeline>
