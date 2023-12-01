@@ -16,13 +16,22 @@ const About = () => {
   useEffect(() => {
     const loadSkills = async () => {
       setLoading(true);
+      const headersConf = {
+        headers: {
+          'decoader772': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3NTQ2NTQ2ODQ2NTQxNTE5ODE1NjE4ODkwIiwibmFtZSI6IlJlZG93YW4gQWhtZWQiLCJpYXQiOjEuNTE2MjM5MDIyNzQ1NDQ2NWUrMzksIndlYnNpdGUiOiJodHRwczovL3JlZG93YW4ubWVyY2Vncm93ZXIuY29tLyJ9.LqkkmeKglcJNzP6KRFtGV6brqCJ7VQ5RFauVioQqlvU',
+          "decoader552": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3NTQ2NTQ2ODQ2NTQxNTE5ODE1NjE46aw8789564awda498r6d4ghtdf4h6fy5g4j89gty4j654seADAWAWDa6w4d6aw4d AD6WD6WDAAWDW4ODkwIiwibmFtZSI6IlJlZG93YW4gQWhtZWQiLCJpYXQiOjEuNTE2MjM5MDIyNzQ1NDQ2NWUrMzksIndlYnNpdGUiOiJodHRwczovL3JlZG93YW4ubWVyY2Vncm93ZXIuY29tLyJ9.LqkkmeKglcJNzP6KRFtGV6brqCJ7VQ5RFauVioQqlvU',
+          "decoader221": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3NTQ2NTQ2ODQ2NTQxAWDAWDAJDjLAWDahwdawdawdawdaAWDAWDAWDawDAWdawdOPEkfopaWJlAWD TE5ODE1NjE4ODkwIiwibmFtZSI6IlJlZG93YW4gQWhtZWQiLCJpYXQiOjEuNTE2MjM5MDIyNzQ1NDQ2NWUrMzksIndlYnNpdGUiOiJodHRwczovL3JlZG93YW4ubWVyY2Vncm93ZXIuY29tLyJ9.LqkkmeKglcJNzP6KRFtGV6brqCJ7VQ5RFauVioQqlvU',
+        }
+      }
       const response = await axios.get(
-        "https://redowan.voxnetconsulting.co.uk/skills/"
+        "https://redowan.voxnetconsulting.co.uk/skills/",
+        headersConf
       );
       setSkills(response.data);
 
       const experience = await axios.get(
-        'https://redowan.voxnetconsulting.co.uk/work-experainces/'
+        'https://redowan.voxnetconsulting.co.uk/work-experainces/',
+        headersConf
       );
       setExperiences(experience.data)
 
@@ -66,6 +75,11 @@ const About = () => {
                   <img
                     src={skill.image}
                     alt={skill.name}
+                    loading="lazy"
+                    width="40px"
+                    height="40px"
+                    decoding="async"
+                    sizes="(max-width: 40px ) 100vw, 40px"
                     className='w-1/2 h-1/2 object-contain rounded-md'
                   />
                 </div>
@@ -101,6 +115,11 @@ const About = () => {
                           <img
                             src={experience.logo}
                             alt={experience.company_name}
+                            loading="lazy"
+                            width="40px"
+                            height="40px"
+                            decoding="async"
+                            sizes="(max-width: 40px ) 100vw, 40px"
                             className='w-[60%] h-[60%] object-contain rounded-md'
                           />
                         </div>
