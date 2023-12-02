@@ -82,7 +82,7 @@ const Contact = () => {
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='w-full flex flex-col gap-7 mt-14'
+          className='w-full flex flex-col gap-7 mt-14 z-20'
         >
           <label className='text-gray-100 font-semibold'>
             Full Name
@@ -125,7 +125,7 @@ const Contact = () => {
               onBlur={handleBlur}
             />
           </label>
-
+            
           <button
             type='submit'
             disabled={loading}
@@ -142,7 +142,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className='lg:full w-full lg:h-[750px] md:h-[350px] h-[250px]'>
+      <div className='lg:full w-full lg:h-[750px] md:h-[350px] h-[250px] sticky top-0'>
         <Canvas
           camera={{
             position: [0, 0, 5],
