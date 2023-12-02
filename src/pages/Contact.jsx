@@ -8,7 +8,7 @@ import { QR } from "../assets/images";
 
 const Contact = () => {
   const formRef = useRef();
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const { alert, showAlert, hideAlert } = useAlert();
   const [loading, setLoading] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState("idle");
@@ -36,6 +36,7 @@ const Contact = () => {
        {
         email: form.email,
         full_name: form.name,
+        phoneNumber: form.phone,
         massage: form.message
       },
       headersConf
@@ -54,6 +55,7 @@ const Contact = () => {
           setForm({
             name: "",
             email: "",
+            phone: "",
             message: "",
           });
         }, [3000]);
@@ -90,7 +92,7 @@ const Contact = () => {
               type='text'
               name='name'
               className='input'
-              placeholder='John'
+              placeholder='Full Name'
               required
               value={form.name}
               onChange={handleChange}
@@ -99,14 +101,28 @@ const Contact = () => {
             />
           </label>
           <label className='text-gray-100 font-semibold'>
-            Email
+            Email Address
             <input
               type='email'
               name='email'
               className='input'
-              placeholder='John@gmail.com'
+              placeholder='email@example.com'
               required
               value={form.email}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          </label>
+          <label className='text-gray-100 font-semibold'>
+            Phone Number
+            <input
+              type='tel'
+              name='phone'
+              className='input'
+              placeholder='+00 000000000'
+              required
+              value={form.phone}
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
@@ -125,7 +141,7 @@ const Contact = () => {
               onBlur={handleBlur}
             />
           </label>
-            
+
           <button
             type='submit'
             disabled={loading}
