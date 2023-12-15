@@ -9,23 +9,14 @@ const App = () => {
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route
-            path='/*'
-            element={
-              <>
-                <Routes>
-                  <Route path='/about' element={<About />} key='1' />
-                  <Route path='/projects' element={<Projects />} key='2'  />
-                  <Route path='/contact' element={<Contact />} key='3'  />
-                  <Route path='/tasks' element={<Tasks />} key='4'  />
-                </Routes>
-                <Footer />
-              </>
-            }
-          />
-          <Route path="*" element={<PageNotFound/>}/>
+          <Route path='/' element={<Home />} key={0} />
+          <Route path='/about' element={<About />} key='1' />
+          <Route path='/projects' element={<Projects />} key='2' />
+          <Route path='/contact' element={<Contact />} key='3' />
+          <Route path='/tasks' element={<Tasks />} key='4' />
+          <Route path="*" element={<PageNotFound />} key={99}/>
         </Routes>
+        <Footer />
       </Router>
     </main>
   );
