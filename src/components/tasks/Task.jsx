@@ -38,7 +38,7 @@ const Task = ({ task, onEditTask, onDeleteTask, onToggleCompleted }) => {
   };
 
   return (
-    <li className=" mb-1 border-b border-gray-600 space-y-2">
+    <li className=" mb-1 border-b border-gray-600 space-y-2 select-text">
       {editing ? (
         <form
           onSubmit={handleDone}

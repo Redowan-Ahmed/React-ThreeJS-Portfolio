@@ -41,7 +41,7 @@ const About = () => {
   }, []);
   const loadingData = [1, 2, 3, 4, 5, 6, 7]
   return (
-    <section className='max-container'>
+    <section className='max-container select-none'>
       <h1 className='head-text text-white flex flex-wrap gap-3 items-center '>
         Hello, I'm
         <span className='blue-gradient_text font-semibold drop-shadow'>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const PageNotFound = () => {
     return (
-        <div className="max-container">
+        <div className="max-container select-none">
             <div className="flex flex-col justify-center items-center align-middle h-[60vh] gap-8">
                 <h1 className="text-white text-4xl font-bold text-center">Page Not Found</h1>
                 <Link to="/">

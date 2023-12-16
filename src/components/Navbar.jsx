@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
-    <header className='header '>
+    <header className='header select-none'>
       <NavLink to='/' key="2">
       <div className="w-32 h-12 shadow-md flex justify-center items-center bg-white rounded-md ">
       <h1 className="text-xl font-bold blue-gradient_text flex justify-center items-center">

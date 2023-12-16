@@ -73,7 +73,7 @@ function Tasks() {
     return (
         <div
             className={`hero ${darkTheme ? "bg-gray-900" : "bg-gray-100"
-                } h-screen md:min-h-full w-full m-auto flex flex-col items-center mt-14 transition-all duration-500 pt-14 `}
+                } h-screen md:min-h-full w-full m-auto flex flex-col items-center mt-14 transition-all duration-500 pt-14 select-none `}
         >
             <div
                 className={`flex flex-col space-y-6 md:w-3/4 w-[100%] z-10 p-4 ${darkTheme ? "text-white" : "text-black"

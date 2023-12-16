@@ -28,7 +28,7 @@ const Projects = () => {
   }, []);
   const loadingData = [1, 2, 3, 4]
   return (
-    <section className='max-container'>
+    <section className='max-container select-none'>
       <h1 className='head-text text-white'>
         My{" "}
         <span className='blue-gradient_text drop-shadow font-semibold'>
