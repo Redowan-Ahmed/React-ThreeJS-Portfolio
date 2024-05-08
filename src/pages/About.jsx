@@ -52,7 +52,7 @@ const About = () => {
 
       <div className='mt-5 flex flex-col gap-2 text-gray-100'>
         <p>
-          A Full Stack Web Developer based in Bangladesh 🇧🇩, specializing in technical
+          A Full Stack Software Engineer based in Bangladesh 🇧🇩, specializing in technical
           education through hands-on learning and building applications.
         </p>
       </div>

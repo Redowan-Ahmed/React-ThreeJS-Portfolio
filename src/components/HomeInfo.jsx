@@ -19,7 +19,7 @@ const HomeInfo = ({ currentStage }) => {
           <img src={Hi} className="w-5 h-auto lg:w-6 sm:w-2" alt="Hi By Redowan" />
         </span>
         <br />
-        A Full Stack Web Developer from Bangladesh 🇧🇩
+        A Full Stack Software Engineer from Bangladesh 🇧🇩
       </h1>
     );
 

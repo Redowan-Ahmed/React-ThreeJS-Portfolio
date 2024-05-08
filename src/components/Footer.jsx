@@ -4,10 +4,13 @@ import axios from "axios";
 
 const Footer = () => {
   const [loading, setLoading] = useState(false);
-  const [socialLinks, setsocialLinks] = useState([])
+  const [socialLinks, setsocialLinks] = useState([]);
+  const [year, setYear] = useState(2024);
+
   useEffect(() => {
     const loadSocialLinks = async () => {
       setLoading(true);
+      setYear(new Date().getFullYear())
 
       const headersConf = {
         headers: {
@@ -31,7 +34,7 @@ const Footer = () => {
 
       <div className='footer-container w-full sm:w-full md:w-auto lg:w-auto'>
         <p className="sm:text-center sm:w-full w-full text-center md:w-auto lg:w-auto text-white">
-          © 2023 <strong>Redowan Ahmed</strong>. All rights reserved.
+          © {year} <strong>Redowan Ahmed</strong>. All rights reserved.
         </p>
 
         <div className='flex gap-3 justify-center items-center w-full sm:w-full md:w-auto lg:w-auto'>
