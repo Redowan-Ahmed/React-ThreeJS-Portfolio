@@ -3,6 +3,7 @@ import About from './About'
 import Projects from "./Projects";
 import Contact from "./Contact";
 import Tasks from "./Tasks";
+import Certificates from "./Certificates";
 import PageNotFound from "./PageNotFound";
 
 export {
@@ -11,5 +12,6 @@ export {
     Projects,
     Contact,
     Tasks,
+    Certificates,
     PageNotFound
 }

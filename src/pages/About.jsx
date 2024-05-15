@@ -3,16 +3,19 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 
-import { CTA } from "../components";
+import { CTA, CTACUS } from "../components";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 import "react-vertical-timeline-component/style.min.css";
 import { Hi } from "../assets/images";
+
 const About = () => {
+  const apiServer = process.env.SERVER_ADDRESS
   const [loading, setLoading] = useState(false);
   const [skills, setSkills] = useState([])
   const [experiences, setExperiences] = useState([])
+  const [educations, setEducation] = useState([])
   useEffect(() => {
     const loadSkills = async () => {
       setLoading(true);
@@ -24,22 +27,29 @@ const About = () => {
         }
       }
       const response = await axios.get(
-        "https://redowan.voxnetconsulting.co.uk/skills/",
+        `${apiServer}skills/`,
         headersConf
       );
-      setSkills(response.data);
+      setSkills(response.data.results);
 
       const experience = await axios.get(
-        'https://redowan.voxnetconsulting.co.uk/work-experainces/',
+        `${apiServer}work-experainces/`,
         headersConf
       );
-      setExperiences(experience.data)
+      setExperiences(experience.data.results)
+
+      const education = await axios.get(
+        `${apiServer}educational-qualifications/`,
+        headersConf
+      );
+      setEducation(education.data.results)
 
       setLoading(false);
     };
     loadSkills();
   }, []);
   const loadingData = [1, 2, 3, 4, 5, 6, 7]
+  console.log(skills);
   return (
     <section className='max-container select-none'>
       <h1 className='head-text text-white flex flex-wrap gap-3 items-center '>
@@ -88,7 +98,7 @@ const About = () => {
         </div>
       </div>
       <div className='py-16'>
-        <h3 className='subhead-text text-white'>Work Experience.</h3>
+        <h3 className='subhead-text text-white'>Work Experiences.</h3>
         <div className='mt-5 flex flex-col gap-3 text-gray-50'>
           <p>
             I've worked with all sorts of companies, leveling up my skills and
@@ -152,8 +162,82 @@ const About = () => {
         </div>
       </div>
 
+      <div className='py-16'>
+        <h3 className='subhead-text text-white'>Educational Qualifications.</h3>
+        <div className='mt-5 flex flex-col gap-3 text-gray-50'>
+          <p>
+            I've worked with all sorts of companies, leveling up my skills and
+            teaming up with smart people. Here's the rundown:
+          </p>
+        </div>
+
+        <div className='mt-12 flex'>
+          {
+            loading ?
+              (
+                <div className="w-full bg-slate-800 h-96 rounded-md animate-pulse">
+
+                </div>
+              ) : (
+                <VerticalTimeline>
+                  {educations.map((education) => (
+                    <VerticalTimelineElement
+                      key={education.id}
+                      date={`${education.start_date} - ${education.present ? 'Present' : education.end_date}`}
+                      iconStyle={{ background: education.strock_color }}
+                      icon={
+                        <div className='flex justify-center items-center w-full h-full'>
+                          <img
+                            src={education.logo}
+                            alt={education.institute_name}
+                            loading="lazy"
+                            width="40px"
+                            height="40px"
+                            decoding="async"
+                            sizes="(max-width: 40px ) 100vw, 40px"
+                            className='w-[60%] h-[60%] object-contain rounded-md'
+                          />
+                        </div>
+                      }
+                      contentStyle={{
+                        borderBottom: "8px",
+                        borderStyle: "solid",
+                        borderBottomColor: education.strock_color,
+                        boxShadow: "none",
+                      }}
+                    >
+                      <div>
+                        <h3 className='text-black text-xl font-poppins font-semibold'>
+                          {education.grade}
+                        </h3>
+                        <p
+                          className='text-black-500 font-medium text-base'
+                          style={{ margin: 0 }}
+                        >
+                          {education.institute_name}
+                        </p>
+                      </div>
+
+                      <div className='description' dangerouslySetInnerHTML={{ __html: education.description }} />
+                    </VerticalTimelineElement>
+                  ))}
+                </VerticalTimeline>
+              )
+          }
+        </div>
+      </div>
+
+      <hr className='border-slate-800' />
+      <div className="py-20">
+          <CTACUS text="All Certificates" buttonLink='/certificates' buttonName='View Certificates' />
+      </div>
+
       <hr className='border-slate-800' />
 
+      <div className="py-20">
+          <CTACUS text="Want Your OWN Custom Task Manager For Free?" buttonLink='/tasks' buttonName='Use Free Task Manager' />
+      </div>
+      <hr className='border-slate-800' />
       <CTA />
     </section>
   );

@@ -1,4 +1,5 @@
 import CTA from "./CTA";
+import CTACUS from "./CTACUS";
 import Alert from "./Alert";
 import Loader from "./Loader";
 import Navbar from "./Navbar";
@@ -11,5 +12,6 @@ export {
     Loader,
     Navbar,
     Footer,
-    HomeInfo
+    HomeInfo,
+    CTACUS
 }

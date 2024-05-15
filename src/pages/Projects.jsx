@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { CTA } from "../components";
+import { CTA, CTACUS } from "../components";
 import { arrow } from "../assets/icons";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Projects = () => {
+  const apiServer = process.env.SERVER_ADDRESS
   const [loading, setLoading] = useState(false);
   const [projects, setProjects] = useState([])
   useEffect(() => {
@@ -18,10 +19,10 @@ const Projects = () => {
         }
       }
       const response = await axios.get(
-        "https://redowan.voxnetconsulting.co.uk/projects/",
+        `${apiServer}projects/`,
         headersConf
       );
-      setProjects(response.data);
+      setProjects(response.data.results);
       setLoading(false);
     };
     loadProjects();
@@ -132,6 +133,11 @@ const Projects = () => {
 
       <hr className='border-slate-800' />
 
+      <div className="py-20">
+          <CTACUS text="Want Your OWN Custom Task Manager For Free?" buttonLink='/tasks' buttonName='Use Free Task Manager' />
+      </div>
+
+      <hr className='border-slate-800' />
       <CTA />
     </section>
   );

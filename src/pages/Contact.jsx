@@ -7,6 +7,7 @@ import axios from "axios";
 import { QR } from "../assets/images";
 
 const Contact = () => {
+  const apiServer = process.env.SERVER_ADDRESS
   const formRef = useRef();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const { alert, showAlert, hideAlert } = useAlert();
@@ -32,8 +33,8 @@ const Contact = () => {
     setCurrentAnimation("hit");
 
     axios.post(
-      'https://redowan.voxnetconsulting.co.uk/contact/',
-       {
+      `${apiServer}contact/`,
+        {
         email: form.email,
         full_name: form.name,
         phoneNumber: form.phone,
@@ -59,17 +60,18 @@ const Contact = () => {
             message: "",
           });
         }, [3000]);
+
+        console.log(response.data);
       },
       (error) => {
         setLoading(false);
-        console.error(error);
         setCurrentAnimation("idle");
-
         showAlert({
           show: true,
-          text: "I didn't receive your message 😢",
+          text: `I didn't receive your message 😢 Please check all form fields`,
           type: "danger",
         });
+
       }
     )
   };

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Footer = () => {
+  const apiServer = process.env.SERVER_ADDRESS
   const [loading, setLoading] = useState(false);
   const [socialLinks, setsocialLinks] = useState([]);
   const [year, setYear] = useState(2024);
@@ -20,10 +21,10 @@ const Footer = () => {
         }
       }
       const response = await axios.get(
-        "https://redowan.voxnetconsulting.co.uk/social-medias/",
+        `${apiServer}social-medias/`,
         headersConf
       );
-      setsocialLinks(response.data);
+      setsocialLinks(response.data.results);
       setLoading(false);
     };
     loadSocialLinks();
