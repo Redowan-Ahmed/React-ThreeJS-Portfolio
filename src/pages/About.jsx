@@ -166,8 +166,7 @@ const About = () => {
         <h3 className='subhead-text text-white'>Educational Qualifications.</h3>
         <div className='mt-5 flex flex-col gap-3 text-gray-50'>
           <p>
-            I've worked with all sorts of companies, leveling up my skills and
-            teaming up with smart people. Here's the rundown:
+          Explore my academic journey and qualifications, showcasing the depth of my knowledge and expertise across various disciplines:
           </p>
         </div>
 
